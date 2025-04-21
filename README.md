@@ -1,6 +1,6 @@
 # 🛒 DeveloperStore - Sistema de Vendas (Avaliação Técnica)
 
-Este projeto faz parte de uma **avaliação técnica** para a vaga de **Desenvolvedor .NET Sênior**, tendo como objetivo implementar uma nova feature em uma solution existente com arquitetura baseada em **DDD (Domain-Driven Design)**.
+Este projeto faz parte de uma **avaliação técnica** para a vaga de **Desenvolvedor .NET SR**, tendo como objetivo implementar uma nova feature em uma solution existente com arquitetura baseada em **DDD (Domain-Driven Design)**.
 
 Foi desenvolvida uma API RESTful responsável pelo **CRUD completo de Vendas e Itens de Venda**, respeitando as regras de negócio fornecidas e utilizando boas práticas como **separação por camadas**, **injeção de dependência**, **desnormalização com identidades externas** e **eventos de domínio**.
 
