@@ -157,13 +157,13 @@ Eventos suportados:
    
 3. Atualize o banco com a migration:
    
-   `dotnet ef database update --project src/Ambev.DeveloperEvaluation.ORM --startup-project src/Ambev.DeveloperEvaluation.WebApi`
+  - `dotnet ef database update --project src/Ambev.DeveloperEvaluation.ORM --startup-project src/Ambev.DeveloperEvaluation.WebApi`
 
-4.Execute a aplicação:
+4. Execute a aplicação:
 
-  `cd src/Ambev.DeveloperEvaluation.WebApi`
-  `dotnet run`
+  - `cd src/Ambev.DeveloperEvaluation.WebApi`
+  - `dotnet run`
 
 5. Acesse o Swagger:
    
-  `Disponível em: https://localhost:7181/swagger/index.html`
+  - `Disponível em: https://localhost:7181/swagger/index.html`
