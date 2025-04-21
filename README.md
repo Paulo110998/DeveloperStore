@@ -1,82 +1,82 @@
-# 🛒 DeveloperStore - Sistema de Vendas (Avaliação Técnica)
+# 🛒 DeveloperStore - Sales System (Technical Assessment)
 
-Este projeto faz parte de uma **avaliação técnica** para a vaga de **Desenvolvedor .NET SR**, tendo como objetivo implementar uma nova feature em uma solution existente com arquitetura baseada em **DDD (Domain-Driven Design)**.
+This project is part of a **technical assessment** for the **SR .NET Developer** position, with the objective of implementing a new feature in an existing solution with an architecture based on **DDD (Domain-Driven Design)**.
 
-Foi desenvolvida uma API RESTful responsável pelo **CRUD completo de Vendas e Itens de Venda**, respeitando as regras de negócio fornecidas e utilizando boas práticas como **separação por camadas**, **injeção de dependência**, **desnormalização com identidades externas** e **eventos de domínio**.
-
----
-
-## 🧠 Domínio do Caso de Uso
-
-A API de vendas manipula os seguintes dados:
-
-- Número da venda
-- Data da venda
-- Cliente (nome desnormalizado)
-- Valor total da venda
-- Filial (nome desnormalizado)
-- Produtos (nome desnormalizado)
-- Quantidades
-- Preços unitários
-- Descontos aplicados
-- Valor total de cada item
-- Status de cancelamento (cancelado ou não)
+A RESTful API was developed responsible for the **complete CRUD of Sales and Sales Items**, respecting the business rules provided and using good practices such as **separation by layers**, **dependency injection**, **denormalization with external identities** and **domain events**.
 
 ---
 
-## ✅ Regras de Negócio
+## 🧠 Use Case Domain
 
-1. Compras com **4+ itens idênticos** têm **10% de desconto**
-2. Compras entre **10 a 20 itens idênticos** têm **20% de desconto**
-3. Não é possível vender **mais de 20 itens idênticos**
-4. Compras com **menos de 4 itens** não têm desconto
+The sales API handles the following data:
+
+- Sale number
+- Sale date
+- Customer
+- Total sale value
+- Branch where the sale was made
+- Products
+- Quantities
+- Unit prices
+- Discounts applied
+- Total value of each item
+- Cancellation status (cancelled or not)
 
 ---
 
-## 🧱 Estrutura dos Projetos
+## ✅ Business Rules
+
+1. Purchases with **4+ identical items** have a **10% discount**
+2. Purchases between **10 and 20 identical items** have a **20% discount**
+3. It is not possible to sell **more than 20 identical items**
+4. Purchases with **less than 4 items** have no discount
+
+---
+
+## 🧱 Project Structure
 
 ### 📦 Ambev.DeveloperEvaluation.Domain
 
-Responsável pelas **entidades, eventos e interfaces de repositório**:
+Responsible for **entities, events and repository interfaces**:
 
-- `Entities/Sale.cs`: entidade principal de venda
-- `Entities/SaleItem.cs`: entidade de item da venda
-- `Events/SaleEvent.cs`: classe abstrata base para eventos (VendaCriada, VendaCancelada, etc.)
-- `Repositories/ISaleRepository.cs`: interface para repositório de vendas
-- `Repositories/ISaleItemRepository.cs`: interface para repositório de itens
+- `Entities/Sale.cs`: main sales entity
+- `Entities/SaleItem.cs`: sales item entity
+- `Events/SaleEvent.cs`: abstract base class for events (SaleCreated, SaleCanceled, etc.)
+- `Repositories/ISaleRepository.cs`: interface for sales repository
+- `Repositories/ISaleItemRepository.cs`: interface for item repository
 
 ---
 
 ### 💡 Ambev.DeveloperEvaluation.Application
 
-Contém os **DTOs, Services, Mapeamentos e Interfaces**:
+Contains the **DTOs, Services, Mappings and Interfaces**:
 
 - `DTOs/`
-  - `SaleDto.cs`
-  - `SaleItemDto.cs`
+- `SaleDto.cs`
+- `SaleItemDto.cs`
 - `Interfaces/`
-  - `ISaleService.cs`
-  - `ISaleItemService.cs`
-  - `IEventPublisher.cs`
+- `ISaleService.cs`
+- `ISaleItemService.cs`
+- `IEventPublisher.cs`
 - `Services/`
-  - `SaleService.cs`
-  - `SaleItemService.cs`
-  - `LoggingEventPublisher.cs`
-- `Mappings/DomainToDTOMappingProfile.cs`: Mapeamento via AutoMapper
+- `SaleService.cs`
+- `SaleItemService.cs`
+- `LoggingEventPublisher.cs`
+- `Mappings/DomainToDTOMappingProfile.cs`: Mapping via AutoMapper
 
 ---
 
 ### 🗃 Ambev.DeveloperEvaluation.ORM
 
-Responsável pelo **acesso ao banco de dados** com Entity Framework Core:
+Responsible for **database access** with Entity Framework Core:
 
 - `Repositories/`
-  - `SaleRepository.cs`
-  - `SaleItemRepository.cs`
-- `DefaultContext.cs`: DbSets e configuração geral
-- `YourDbContextFactory.cs`: classe de factory para uso com migrations
+- `SaleRepository.cs`
+- `SaleItemRepository.cs`
+- `DefaultContext.cs`: DbSets and general configuration
+- `YourDbContextFactory.cs`: factory class for use with migrations
 
-> **DbSets incluídos**:
+> **Included DbSets**:
 > - `Sales`
 > - `SaleItems`
 
@@ -84,27 +84,27 @@ Responsável pelo **acesso ao banco de dados** com Entity Framework Core:
 
 ### ⚙️ Ambev.DeveloperEvaluation.IoC
 
-Contém a configuração de **injeção de dependência**:
+Contains the **dependency injection** configuration:
 
 - `InfrastructureModuleInitializer.cs`:
-  - Repositórios
-  - Serviços
-  - Eventos
-  - AutoMapper
+- Repositories
+- Services
+- Events
+- AutoMapper
 
 ---
 
 ### 🌐 Ambev.DeveloperEvaluation.WebApi
 
-Exposição da **API RESTful** com endpoints organizados por controllers:
+Exposing the **RESTful API** with endpoints organized by controllers:
 
-- `Controllers/SalesController.cs`: CRUD de vendas
-- `Controllers/SalesItemController.cs`: CRUD de itens
-- `appsettings.json`: configuração da connection string
+- `Controllers/SalesController.cs`: Sales CRUD
+- `Controllers/SalesItemController.cs`: Item CRUD
+- `appsettings.json`: Connection string configuration
 
-#### 🧪 Endpoints disponíveis:
+#### 🧪 Available endpoints:
 
-##### 🔹 Vendas (`/api/Sales`)
+##### 🔹 Sales (`/api/Sales`)
 
 - `GET /api/Sales`
 - `POST /api/Sales`
@@ -113,7 +113,7 @@ Exposição da **API RESTful** com endpoints organizados por controllers:
 - `DELETE /api/Sales/{id}`
 - `PUT /api/Sales/{id}/cancel/status`
 
-##### 🔸 Itens de Venda (`/api/SalesItem`)
+##### 🔸 Sale Items (`/api/SalesItem`)
 
 - `GET /api/SalesItem`
 - `POST /api/SalesItem`
@@ -126,44 +126,45 @@ Exposição da **API RESTful** com endpoints organizados por controllers:
 
 ### 🧪 Ambev.DeveloperEvaluation.Unit
 
-Testes unitários com **XUnit**:
+Unit tests with **XUnit**:
 
 - `Domain/Entities/SaleTest.cs`
 - `Domain/Entities/SaleItemTest.cs`
 
 ---
 
-## 📤 Publicação de Eventos
+## 📤 Event Publishing
 
-  Sistema de eventos no padrão **Domain Events**, publicando logs via `LoggingEventPublisher.cs`.
+Event system in the **Domain Events** standard, publishing logs via `LoggingEventPublisher.cs`.
 
-Eventos suportados:
+Supported events:
 
-- `VendaCriada`
-- `VendaModificada`
-- `VendaCancelada`
-- `ItemCancelado`
+- `SaleCreated`
+- `SaleModified`
+- `SaleCanceled`
+- `ItemCanceled`
 
 ---
 
-## 🚀 Como usar
+## 🚀 How to use
 
-1. Clone o repositório:
-   
-  - `git clone https://github.com/Paulo110998/DeveloperStore.git`
-  - `cd DeveloperStore`
+1. Clone the repository:
 
-2. Crie o banco de dados PostgreSQL com o nome "DeveloperEvaluation".
-   
-3. Atualize o banco com a migration:
-   
-  - `dotnet ef database update --project src/Ambev.DeveloperEvaluation.ORM --startup-project src/Ambev.DeveloperEvaluation.WebApi`
+- `git clone https://github.com/Paulo110998/DeveloperStore.git`
+- `cd DeveloperStore`
 
-4. Execute a aplicação:
+2. Create the PostgreSQL database with the name "DeveloperEvaluation".
 
-  - `cd src/Ambev.DeveloperEvaluation.WebApi`
-  - `dotnet run`
+3. Update the database with the migration:
 
-5. Acesse o Swagger:
-   
-  - `Disponível em: https://localhost:7181/swagger/index.html`
+- `dotnet ef database update --project src/Ambev.DeveloperEvaluation.ORM --startup-project src/Ambev.DeveloperEvaluation.WebApi`
+
+4. Run the application:
+
+- `cd src/Ambev.DeveloperEvaluation.WebApi`
+
+- `dotnet run`
+
+5. Access Swagger:
+
+- `Available at: https://localhost:7181/swagger/index.html`
