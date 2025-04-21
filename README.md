@@ -154,12 +154,12 @@ Eventos suportados:
 
 2. **Crie o banco de dados PostgreSQL com o nome "DeveloperEvaluation".**
    
-4. **Atualize o banco com a migration:**
+3. **Atualize o banco com a migration:**
    dotnet ef database update --project src/Ambev.DeveloperEvaluation.ORM --startup-project src/Ambev.DeveloperEvaluation.WebApi
 
-5.**Execute a aplicação:**
+4.**Execute a aplicação:**
   cd src/Ambev.DeveloperEvaluation.WebApi
   dotnet run
 
-6.**Acesse o Swagger:**
+5.**Acesse o Swagger:**
   Disponível em: https://localhost:7181/swagger/index.html
